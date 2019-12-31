@@ -6,6 +6,7 @@ import java.time.LocalTime;
 
 import org.eternity.money.Money;
 import org.eternity.movie.step01.pricing.AmountDiscountPolicy;
+import org.eternity.movie.step01.pricing.NoneDiscountPolicy;
 import org.eternity.movie.step01.pricing.PeriodCondition;
 import org.eternity.movie.step01.pricing.SequenceCondition;
 
@@ -44,11 +45,24 @@ public class main {
 		// 의존성이라는 것은 너무 중요함. 없으면 안된다는거니까 의존성이 낮을수록, 독립적일 수록 좋은 코드 
 		
 		
-		
-		
 		// 다형성 ; 동일한 메세지를 전송하지만 실제로 어떤 메서드가 실행 될 것인지는 메세지를 수신하는 객체의 클래스가 무엇이냐에 따라 달라지는것
 		// ex) Movie는 초기화 시에  DiscountPolicy라고 써있음, 원래 코드에는 근데, 실제로 실행되는건 AmountDiscountPolicy임
 		// 보통 상속을 이용하면 다형성을 구현할 수 있지만 이외에도 많은 방법이 있다고함..! 
+		
+		
+		
+		
+		
+		
+		//p. 67 만약 할인정책과 할인금액이 하나도 없는 것이 있다면 이건 어떻게 추가할 것인가?
+		// 나같으면 분명 돈계산 부분(Movie 에 calculateMovieFee)에 if null이면 이거 추가할텐데
+		// 이렇게 되면, 할인 정책이 없는 경우를 예외 케이스로 취급하여, 협력 방식이 무너진다.... 책임을 다른사람에게 넘기는것임
+		// 따라서 차라리 class를 하나더 추가하는게 협력관계를 정확히 유지하는것임
+		Movie starWars = new Movie("스타워즈", Duration.ofMinutes(210), Money.wons(10000), new NoneDiscountPolicy());
+		// 중요한건 원본의 수정 없이, class하나 추가만으로 변경했다는것. 이게 유연한 설계
+		// 결론.. 유연성이 필요한 곳에 추상화를 사용하기
+		
+		
 	}
 
 }

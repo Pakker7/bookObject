@@ -29,5 +29,6 @@ public class Movie {
         // --> 안됨. abstract class는 초기화가 안됨 근데 어떻게 하면 된다고 하는데 이해가 안감..
         
     }
+    
 }
 

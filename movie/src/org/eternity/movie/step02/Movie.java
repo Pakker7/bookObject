@@ -1,6 +1,7 @@
 package org.eternity.movie.step02;
 
 import org.eternity.money.Money;
+import org.eternity.movie.step02.DiscountPolicy;
 
 import java.time.Duration;
 
@@ -23,6 +24,10 @@ public class Movie {
 
     public Money calculateMovieFee(Screening screening) {
         return fee.minus(discountPolicy.calculateDiscountAmount(screening));
+    }
+    
+    public void changeDiscountPolicy(DiscountPolicy discountPolicy) {
+    	this.discountPolicy = discountPolicy;
     }
 }
 
