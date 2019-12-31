@@ -12,6 +12,9 @@ import org.eternity.movie.step01.pricing.SequenceCondition;
 public class main {
 
 	public static void main(String[] args) {
+		System.out.println("start");
+		
+		
 		Movie avatar = new Movie("아바타", 
 								Duration.ofMinutes(120), 
 								Money.wons(10000), 
@@ -22,6 +25,10 @@ public class main {
 														new PeriodCondition(DayOfWeek.MONDAY, LocalTime.of(10, 0), LocalTime.of(11, 59)),
 														new PeriodCondition(DayOfWeek.TUESDAY, LocalTime.of(12, 30), LocalTime.of(14, 00))));
 		
+		
+		System.out.println("end");
+		
+		
 		// 새로 알게된 점
 		// 생성자 초기화 시에 무조건 파라미터를 입력하게 하면 필요한 값이 비게 넘어오는 상황을 방지할 수 있다.
 		// 그리고 1 depth 만 생성자를 받게 하지 말고, 생성자 초기화 시에 받는 파라미터 자체도 또 초기화를 무조건 파라미터를 입력하게 만들 수도 있다. 위의 상황처럼
@@ -31,8 +38,17 @@ public class main {
 		
 		
 		//나의 생각
-		// 유연해지고 확장 가능해 진다 는 것 --> 이 것에 대한 
-		// 코드의 의존성과 실행 시점의 의존성을 다르게 하려면, 상속 or interface를 
+		// 유연해지고 확장 가능해 진다 는 것 --> 이 것에 대한 이유는 위(new AmountDiscountPolicy)에서 보면 DiscountCondition(interface)로 파라미터를 받으니까 할인조건 관련
+		//								class를 아무리 추가해도 상관이 없음 따라서 유연, 확장 가능
+		// 코드의 의존성과 실행 시점의 의존성을 다르게 하려면, 상속 or interface를 적극..활용해야 함.
+		// 의존성이라는 것은 너무 중요함. 없으면 안된다는거니까 의존성이 낮을수록, 독립적일 수록 좋은 코드 
+		
+		
+		
+		
+		// 다형성 ; 동일한 메세지를 전송하지만 실제로 어떤 메서드가 실행 될 것인지는 메세지를 수신하는 객체의 클래스가 무엇이냐에 따라 달라지는것
+		// ex) Movie는 초기화 시에  DiscountPolicy라고 써있음, 원래 코드에는 근데, 실제로 실행되는건 AmountDiscountPolicy임
+		// 보통 상속을 이용하면 다형성을 구현할 수 있지만 이외에도 많은 방법이 있다고함..! 
 	}
 
 }
