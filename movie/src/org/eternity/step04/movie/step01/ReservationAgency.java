@@ -17,7 +17,7 @@ public class ReservationAgency {
                 discountable = condition.getSequence() == screening.getSequence();
             }
 
-            if (discountable) {
+            if (discountable) { //??
                 break;
             }
         }
